@@ -1,7 +1,5 @@
 <template>
   <div class="app-container">
-    {{id}}
-    {{type}}
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Activity name">
         <el-input v-model="form.name" />
@@ -69,8 +67,8 @@ export default {
     }
   },
   created() {
-    this.id = this.$route.params.id;
-    this.type = this.id === 'add' ? this.id : this.$route.query.type;
+    this.id = this.$route.params.id
+    this.type = this.id === 'add' ? this.id : this.$route.query.type
   },
   methods: {
     onSubmit() {

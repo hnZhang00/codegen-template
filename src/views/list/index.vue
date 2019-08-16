@@ -2,7 +2,6 @@
   <div class="app-container">
     <div class="app-list__block" :style="{display: !ifShowDetail ? 'block' : 'none'}">
       <el-button @click="add()" type="text" size="small">添加</el-button>
-      <el-button @click="downloadJ()" type="text" size="small">testtesttest</el-button>
       <el-table
         v-loading="listLoading"
         :data="list"
@@ -85,36 +84,6 @@ export default {
     this.getList();
   },
   methods: {
-    funDownload(content, filename) {
-      var eleLink = document.createElement("a");
-      eleLink.download = filename;
-      eleLink.style.display = "none";
-      // 字符内容转变成blob地址
-      var blob = new Blob([content]);
-      eleLink.href = URL.createObjectURL(blob);
-      // 触发点击
-      document.body.appendChild(eleLink);
-      eleLink.click();
-      // 然后移除
-      document.body.removeChild(eleLink);
-    },
-    downloadJ() {
-      let content = {
-        id: '1',
-        name: '1',
-        children: [
-          {
-            id: '11',
-            name: '11'
-          },
-          {
-            id: '12',
-            name: '12'
-          }
-        ]
-      }
-      this.funDownload(JSON.stringify(content), "test.json");
-    },
     getList() {
       this.listLoading = true;
       getList().then(response => {
